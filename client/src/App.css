@@ -1,0 +1,83 @@
+
+body{
+  /* background-color: #ebf0fa; */
+  background-color:  #d6e0f5;
+  margin: 0;
+  padding: 0;
+}
+.main-heading{
+  background-color: white;
+  padding: 20px;
+  margin-top: 0px;
+  box-shadow: 0 2px 20px 0 rgb(199, 197, 197);
+}
+.text-center{
+  text-align: center;
+}
+.colour-dark{
+  color: #3366cc;
+}
+.app-container{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.link-generation-card{
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 2px 20px 0 rgb(172, 172, 172);
+  border-radius: 5px;
+  height: 300PX;
+  margin-bottom: 30px;
+}
+.url-input{display: block;
+  width: 250px;
+  padding: 5px 10px;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+.btn{
+  background-color: #3366cc;
+  color: white;
+  border-radius: 5px;
+  border: 2px solid #3366cc;
+  cursor: pointer;
+}
+.btn:hover{
+  background-color: white;
+  color: #3366cc;
+  /* background-color:  #b4ccfa; */
+  /* background-color: black; */
+  /* border: none; */
+
+}
+.short-url-input{
+  width: 220px;
+  padding: 5px 10px;
+  font-size: 18px;
+  /* margin-bottom: 20px; */
+}
+.shorturl-container{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+ margin-bottom: 20px;
+
+}
+.coyp-icon{
+  cursor: pointer;
+}
+.all-link-card{
+  background-color: white;
+  padding:10px 20px;
+  margin: 20px;
+  border-radius: 10px;
+}
+.all-link-container{
+  height: 73vh;
+  /* background-color: bisque; */
+  overflow-y: scroll;
+}
+.all-link-container::-webkit-scrollbar {
+  display: none;
+}
