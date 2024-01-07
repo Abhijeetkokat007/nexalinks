@@ -7,9 +7,13 @@ body{
 }
 .main-heading{
   background-color: white;
-  padding: 20px;
+  padding:0px 20px;
   margin-top: 0px;
+  margin-bottom: 30px;
   box-shadow: 0 2px 20px 0 rgb(199, 197, 197);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .text-center{
   text-align: center;

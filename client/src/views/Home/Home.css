@@ -1,0 +1,13 @@
+.login-container{
+    text-align: center;
+    width: 228px;
+    /* border: 1px solid black; */
+ margin:200px auto ;
+ height: 50px;
+ border-radius: 20px;
+    
+}
+
+.col-light{
+    color: rgb(80, 80, 80);
+}

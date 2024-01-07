@@ -4,6 +4,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 import Link from "./models/Link.js";
 import path from "path";
+import { postApiLogin } from "./controllers/Login.js";
+import { getApiUserLinks } from "./controllers/Link.js";
+
 
 
 const app = Express();
@@ -26,10 +29,11 @@ const connnectDB = async () => {
 connnectDB();
 
 app.post("/link", async (req, res) => {
-  const {url, slug} = req.body;
+  const {url, slug, } = req.body;
  const randomSlug = Math.random().toString(36).substring(2,7);
   const link = new Link({
     url: url,
+    // user:user,
     slug : slug || randomSlug ,
   })
 
@@ -94,6 +98,9 @@ app.get("/api/links", async (req, res) => {
   }
 })
 
+app.post("/api/login",  postApiLogin )
+app.get("/api/link/user/:id", getApiUserLinks )
+
 if(process.env.NODE_ENV === "production"){
  app.use(Express.static(path.join(__dirname, '..', 'client', 'build'))); 
 
@@ -102,7 +109,7 @@ if(process.env.NODE_ENV === "production"){
  });
 }
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 
 
 app.listen(PORT, () => {

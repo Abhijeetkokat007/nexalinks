@@ -1,6 +1,11 @@
 import { Schema, model } from "mongoose";
 
 const linkSchema = new Schema({
+    // user:{
+    //     type : Schema.Types.ObjectId,
+    //     ref : "Login",
+    //     required : true
+    // },
     url : {
         type :String,
         required : true,
