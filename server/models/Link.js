@@ -14,6 +14,7 @@ const linkSchema = new Schema({
         type : String,
         required : true,
         unique : true,
+        lowercase: true,
     },
     click : {
        type :Number,

@@ -28,14 +28,14 @@ const connnectDB = async () => {
 
 connnectDB();
 
-app.post("/link", async (req, res) => {
+app.post("/api/link", async (req, res) => {
   const {url, slug, } = req.body;
  const randomSlug = Math.random().toString(36).substring(2,7);
   const link = new Link({
     url: url,
     // user:user,
     slug : slug || randomSlug ,
-  })
+  });
 
   try{
     const saveLink = await link.save();
@@ -44,7 +44,7 @@ app.post("/link", async (req, res) => {
       data: {
         // url:saveLink.url,
         // slug:saveLink.slug,
-        shortUrl:`${process.env.BASE_URL}/${saveLink.slug}`
+        shortUrl: `${process.env.BASE_URL}/ak/${saveLink.slug}`
       },
       message: "Link saved successfuly"
     });
@@ -57,10 +57,17 @@ app.post("/link", async (req, res) => {
   }
 })
 
-app.get("/:slug", async (req, res) => {
+app.get("/api/:slug", async (req, res) => {
  const {slug} = req.params;
 
- const link = await Link.findOne({slug: slug});
+const link = await Link.findOne({slug: slug});
+
+if(!link){
+  return res.json({
+    success: false,
+    message: "Link not found"
+  })
+ }
 
 try{
   await Link.updateOne({slug: slug}, {$set:{click: link.click + 1}})
@@ -69,19 +76,14 @@ catch(e){
   console.log(e.message)
 }
 
- if(!link){
-  return res.json({
-    success: false,
-    message: "Link not found"
-  })
- }
- const redirectUrl = link.url;
+ 
+//  const redirectUrl = link.url;
  res.redirect(redirectUrl);
 })
 
-app.get("/api/links", async (req, res) => {
+app.get("/api/fetch/links", async (req, res) => {
   try{
-    const  linksdata = await Link.find();
+    const  linksdata = await Link.find({});
 
    res.json({
     success:true,

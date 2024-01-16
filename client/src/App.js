@@ -5,15 +5,16 @@ import axios from 'axios';
 
 function App() {
   const [user, setUser] = useState("");
+  const [name, setName] = useState("");
   const [url, setUrl] = useState("");
   const [slug, setSlug] = useState("");
   const [shortUrl, setShortUrl] = useState("");
   const [links, setLinks] = useState([]);
-  const [name, setName] = useState("");
+  
 
   const generateLink = async () => {
     try {
-      const response = await axios.post('/link', {user, url, slug });
+      const response = await axios.post('/api/link', {user, url, slug });
       const shortlink = response?.data?.data?.shortUrl;
       setShortUrl(shortlink);
     } catch (error) {
@@ -21,15 +22,18 @@ function App() {
     }
   }
 
+  
+
   const copyShorturl = () => {
     navigator.clipboard.writeText(shortUrl);
     alert("URL copied");
   }
   const localStoragedata = JSON.parse(localStorage.getItem("nexalinkcustomer") || "{}");
+
   const loadurl = async () => {
     console.log(localStoragedata._id)
     try {
-      const response = await axios.get(`/api/links`);
+      const response = await axios.get(`/api/fetch/links`);
       setLinks(response?.data?.data);
     } catch (error) {
       console.error("Error loading links:", error);
@@ -41,6 +45,7 @@ function App() {
 
   useEffect(() => {
     loadurl();
+    alert("all Links loaded")
     const storageUser = JSON.parse(localStorage.getItem("nexalinkcustomer") || "{}");
     console.log(storageUser);
 
@@ -63,14 +68,15 @@ function App() {
          
           <input
             type='text'
-            placeholder='URL'
+            placeholder='Enter URL'
             className='url-input'
+            required
             value={url}
             onChange={(e) => setUrl(e.target.value)}
           />
           <input
             type='text'
-            placeholder='Slug (optional)'
+            placeholder='Enter Short Slug (optional)'
             className='url-input'
             value={slug}
             onChange={(e) => setSlug(e.target.value)}
@@ -96,10 +102,10 @@ function App() {
             links?.map((linkdata, i) => {
                const { url, slug, click} = linkdata;
                return(
-                <div className='all-link-card'>
+                <div className='all-link-card' key='i'>
                  
                   <p>URL : {url}</p>
-                 <p>SLUG : http://AK/nexalinks/{slug}</p>
+                 <p>SLUG : https://nexalinks.onrender.com/ak/{slug}</p>
                  <p>Clicks : {click}</p>
                    </div>
                )
