@@ -57,9 +57,9 @@ app.post("/api/link", async (req, res) => {
 app.get("/api/:slug", async (req, res) => {
  const {slug} = req.params;
 
-const link = await Link.findOne({slug: slug});
+const linkOne = await Link.findOne({slug: slug});
 
-if(!link){
+if(!linkOne){
   return res.json({
     success: false,
     message: "Link not found"
@@ -68,7 +68,7 @@ if(!link){
 
 try{
   await Link.updateOne({slug: slug}, 
-    {$set: {click: link.click + 1}}
+    {$set: {click: linkOne.click + 1}}
     )
 }
 catch(e){
@@ -76,8 +76,9 @@ catch(e){
 }
 
  
- const redirectUrl = link.url;
+ const redirectUrl = linkOne.url;
  res.redirect(redirectUrl);
+
 })
 
 app.get("/api/fetch/links", async (req, res) => {
