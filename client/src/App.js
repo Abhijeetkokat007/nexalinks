@@ -16,16 +16,16 @@ function App() {
     try {
       const response = await axios.post('/api/link', {user, url, slug });
       const shortlink = response?.data?.data?.shortUrl;
-      setShortUrl(shortlink);
+      setShortUrl(response?.data?.data?.shortUrl);
     } catch (error) {
       console.error("Error generating link:", error);
     }
   }
 
-  
+ 
 
   const copyShorturl = () => {
-    navigator.clipboard.writeText(shortUrl);
+    window.navigator.clipboard.writeText(shortUrl);
     alert("URL copied");
   }
   const localStoragedata = JSON.parse(localStorage.getItem("nexalinkcustomer") || "{}");
@@ -49,11 +49,11 @@ function App() {
     const storageUser = JSON.parse(localStorage.getItem("nexalinkcustomer") || "{}");
     console.log(storageUser);
 
-    if (!storageUser?.email) {
-      // showToast('please Account login !', 'alert', 6000);
-      alert("Please Account login !");
-      window.location.href = "/login";
-    }
+    // if (!storageUser?.email) {
+    //   // showToast('please Account login !', 'alert', 6000);
+    //   alert("Please Account login !");
+    //   window.location.href = "/login";
+    // }
   }, []);
 
   return (
@@ -103,11 +103,10 @@ function App() {
                const { url, slug, click} = linkdata;
                return(
                 <div className='all-link-card' key='i'>
-                 
-                  <p>URL : {url}</p>
-                 <p>SLUG : https://nexalinks.onrender.com/ak/{slug}</p>
+                 <p>URL : {url}</p>
+                 <p >SLUG : https://nexalinks.onrender.com/ak/{slug}</p>
                  <p>Clicks : {click}</p>
-                   </div>
+                </div>
                )
             })
           }

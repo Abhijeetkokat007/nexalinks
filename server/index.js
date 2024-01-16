@@ -33,7 +33,6 @@ app.post("/api/link", async (req, res) => {
  const randomSlug = Math.random().toString(36).substring(2,7);
   const link = new Link({
     url: url,
-    // user:user,
     slug : slug || randomSlug ,
   });
 
@@ -42,8 +41,6 @@ app.post("/api/link", async (req, res) => {
     return res.json({
       success: true,
       data: {
-        // url:saveLink.url,
-        // slug:saveLink.slug,
         shortUrl: `${process.env.BASE_URL}/ak/${saveLink.slug}`
       },
       message: "Link saved successfuly"
@@ -70,14 +67,16 @@ if(!link){
  }
 
 try{
-  await Link.updateOne({slug: slug}, {$set:{click: link.click + 1}})
+  await Link.updateOne({slug: slug}, 
+    {$set: {click: link.click + 1}}
+    )
 }
 catch(e){
   console.log(e.message)
 }
 
  
-//  const redirectUrl = link.url;
+ const redirectUrl = link.url;
  res.redirect(redirectUrl);
 })
 
