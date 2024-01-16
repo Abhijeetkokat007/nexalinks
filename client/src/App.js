@@ -49,11 +49,11 @@ function App() {
     const storageUser = JSON.parse(localStorage.getItem("nexalinkcustomer") || "{}");
     console.log(storageUser);
 
-    // if (!storageUser?.email) {
-    //   // showToast('please Account login !', 'alert', 6000);
-    //   alert("Please Account login !");
-    //   window.location.href = "/login";
-    // }
+    if (!storageUser?.email) {
+      // showToast('please Account login !', 'alert', 6000);
+      alert("Please Account login !");
+      window.location.href = "/login";
+    }
   }, []);
 
   return (
