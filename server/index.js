@@ -54,7 +54,7 @@ app.post("/api/link", async (req, res) => {
   }
 })
 
-app.get("/api/:slug", async (req, res) => {
+app.get("/ak/:slug", async (req, res) => {
  const {slug} = req.params;
 
 const linkOne = await Link.findOne({slug: slug});

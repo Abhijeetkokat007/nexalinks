@@ -38,9 +38,10 @@ function App() {
     } catch (error) {
       console.error("Error loading links:", error);
     }
-    
- setName(localStoragedata.name);
- setUser(localStoragedata?._id);
+
+    localStoragedata? setName(localStoragedata.name) : setName("asdfghjk");
+    localStoragedata? setUser(localStoragedata?._id) : setUser('1234567890');
+ 
   }
 
   useEffect(() => {
@@ -49,18 +50,20 @@ function App() {
     const storageUser = JSON.parse(localStorage.getItem("nexalinkcustomer") || "{}");
     console.log(storageUser);
 
-    if (!storageUser?.email) {
-      // showToast('please Account login !', 'alert', 6000);
-      alert("Please Account login !");
-      window.location.href = "/login";
-    }
+    // if (!storageUser?.email) {
+    //   // showToast('please Account login !', 'alert', 6000);
+    //   alert("Please Account login !");
+    //   window.location.href = "/login";
+    // }
   }, []);
+
+  console.log("user:", user)
 
   return (
     <>
       <div className=' main-heading'>
       <h1 ><span className='colour-dark'>NEXA</span>LINKS</h1>
-      <span>Hello 👋🏻, {name}</span>
+      <span>Hello 👋🏻, user {name}</span>
       </div>
       <div className='app-container'>
         <div className='link-generation-card'>
