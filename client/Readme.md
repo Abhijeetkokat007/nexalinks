@@ -84,8 +84,6 @@ The URL shortener service should now be running on `http://localhost:8080`.
 
 4. Users clicking on the short URL will be redirected to the original long URL.
 
-## API Documentation
 
-For detailed API documentation, refer to the [API Documentation](API_DOCUMENTATION.md) file.
 
 
