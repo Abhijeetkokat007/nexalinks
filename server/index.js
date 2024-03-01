@@ -41,7 +41,7 @@ app.post("/api/link", async (req, res) => {
     return res.json({
       success: true,
       data: {
-        shortUrl: `${process.env.BASE_URL}/ak/${saveLink.slug}`
+        shortUrl: `${process.env.BASE_URL_LINK}/ak/${saveLink.slug}`
       },
       message: "Link saved successfuly"
     });
@@ -83,7 +83,7 @@ catch(e){
 
 app.get("/api/fetch/links", async (req, res) => {
   try{
-    const  linksdata = await Link.find({});
+    const  linksdata = await Link.find();
 
    res.json({
     success:true,
