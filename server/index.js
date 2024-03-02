@@ -83,7 +83,7 @@ catch(e){
 
 app.get("/api/fetch/links", async (req, res) => {
   try{
-    const  linksdata = await Link.find().maxTimeMS(1000);
+    const  linksdata = await Link.find().maxTimeMS(30000);
 
    res.json({
     success:true,
